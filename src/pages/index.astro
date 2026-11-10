@@ -1,78 +1,246 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
+import createSlug from "../lib/createSlug";
+import { isPublished } from "../lib/posts";
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = ((await getCollection("blog")) ?? [])
+  .filter(isPublished)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latest_posts = posts.slice(0, 3);
 
-const last_posts = posts.slice(0, 3);
+const steps = [
+  {
+    n: "01",
+    title: "Identify use cases",
+    desc: "Find the places AI is most profitable to apply.",
+  },
+  {
+    n: "02",
+    title: "Plan the infrastructure",
+    desc: "Architect the platform it will run on.",
+  },
+  {
+    n: "03",
+    title: "Build robust pipelines",
+    desc: "Engineer data and retrieval pipelines that hold up in production.",
+  },
+  {
+    n: "04",
+    title: "Deploy with security & monitoring",
+    desc: "Ship with strict access control, lineage, and telemetry.",
+  },
+];
 ---
 
-<BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
-    <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+<BaseLayout sideBarActiveItemID="home" hideSidebarAvatar={true}>
+  <!-- Hero -->
+  <section class="flex flex-col md:flex-row items-center gap-8 md:gap-12 py-6 md:py-10">
+    <div class="blueprint rounded-box border border-base-300 p-4 shrink-0">
+      <Image
+        format="webp"
+        width={400}
+        height={400}
+        src="/profile.webp"
+        alt="Ahmed Mohamed Eid"
+        class="rounded-box w-48 h-48 md:w-64 md:h-64 object-cover"
+      />
     </div>
-    <div class="mt-8">
-      <a class="btn btn-primary" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+    <div class="text-center md:text-left">
+      <div class="font-mono text-xs uppercase tracking-widest text-primary mb-3">AI Solutions Architect &middot; Riyadh</div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">From AI ambition to measurable production value.</h1>
+      <p class="text-lg opacity-80 max-w-xl mb-6">
+        Most organizations know they need AI, but few know where to start or how to make it pay off. I help them
+        get from ambition to measurable production value &mdash; blending deep technical expertise with 18+ years
+        of enterprise judgment.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+        <a class="btn btn-primary" href="mailto:ahmedmeid@gmx.com">Let's talk</a>
+        <a class="btn btn-outline" href="#selected-work">See selected work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials strip -->
+  <div class="my-10 md:my-14 border-y border-base-300 py-5">
+    <ul class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-sm md:text-base">
+      <li>18+ years in architecture</li>
+      <li class="hidden md:inline opacity-40" aria-hidden="true">&middot;</li>
+      <li>M.Sc. in AI, UT Austin</li>
+      <li class="hidden md:inline opacity-40" aria-hidden="true">&middot;</li>
+      <li>AWS &amp; Google Cloud professional certifications</li>
+      <li class="hidden md:inline opacity-40" aria-hidden="true">&middot;</li>
+      <li>Palantir Foundry &amp; AIP certified</li>
+    </ul>
+  </div>
+
+  <!-- How I take AI from idea to production -->
+  <section class="my-16">
+    <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left">How I take AI from idea to production</h2>
+    <div class="blueprint rounded-box border border-base-300 p-6 md:p-10">
+      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
+        {
+          steps.map((step, i) => (
+            <>
+              <div class="flex-1 bg-base-100 border border-base-300 rounded-box p-5">
+                <div class="font-mono text-xs text-primary mb-2">{step.n}</div>
+                <div class="font-semibold mb-1">{step.title}</div>
+                <div class="text-sm opacity-70">{step.desc}</div>
+              </div>
+              {i < steps.length - 1 && (
+                <div class="flex items-center justify-center text-primary shrink-0 px-2 py-1 md:py-0">
+                  <span class="md:hidden text-xl" aria-hidden="true">
+                    ↓
+                  </span>
+                  <span class="hidden md:inline text-xl" aria-hidden="true">
+                    →
+                  </span>
+                </div>
+              )}
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected work -->
+  <section id="selected-work" class="my-16 scroll-mt-20">
+    <h2 class="text-2xl md:text-3xl font-bold mb-8">Selected work</h2>
+    <div class="grid gap-5 md:grid-cols-2">
+      <div class="md:col-span-2 bg-base-100 border border-base-300 rounded-box p-6">
+        <div class="badge badge-secondary mb-3">Palantir Foundry &amp; AIP</div>
+        <h3 class="text-xl font-bold mb-2">Enterprise GenAI System &mdash; PIF</h3>
+        <p class="opacity-80">
+          Architected and built an end-to-end enterprise GenAI system for the Public Investment Fund (PIF) AI
+          solutions team on Palantir Foundry &amp; AIP: RAG across vector, hybrid, and graph-based retrieval; ASR
+          ingestion and transcription; agentic workflows; RBAC, lineage, and telemetry; plus LLM evaluation and
+          regression-testing suites covering retrieval relevance, groundedness, latency, and cost. Led and mentored
+          a team of data engineers.
+        </p>
+      </div>
+
+      <div class="bg-base-100 border border-base-300 rounded-box p-6">
+        <div class="badge badge-secondary mb-3">TONOMUS / NEOM</div>
+        <h3 class="text-xl font-bold mb-2">NEOM Enterprise Architecture</h3>
+        <p class="opacity-80">
+          Enterprise AI and cloud reference architectures, landing zones, HLD/LLD, NFR and cost/option analyses,
+          procurement and technology advisory, and AI discovery workshops across NEOM sectors &mdash; Food,
+          Environment, Energy &amp; Water, Hotels, and University of NEOM.
+        </p>
+      </div>
+
+      <div class="bg-base-100 border border-base-300 rounded-box p-6">
+        <div class="badge badge-secondary mb-3">UT Austin</div>
+        <h3 class="text-xl font-bold mb-2">Medical Imaging Diagnostic Pipeline</h3>
+        <p class="opacity-80">
+          Brain-cancer classification pipeline with Grad-CAM and SHAP explainability. Structured error analysis
+          reduced false positives by 13%.
+        </p>
+      </div>
+
+      <div class="bg-base-100 border border-base-300 rounded-box p-6">
+        <div class="badge badge-secondary mb-3">UT Austin</div>
+        <h3 class="text-xl font-bold mb-2">Vision-Language Model Fine-Tuning</h3>
+        <p class="opacity-80">
+          Fine-tuned a vision-language model for visual question answering &mdash; preprocessing, augmentation,
+          experiment tracking, and structured evaluation.
+        </p>
+      </div>
+
+      <div class="bg-base-100 border border-base-300 rounded-box p-6">
+        <h3 class="text-xl font-bold mb-2">AI Tender Evaluation</h3>
+        <p class="opacity-80">
+          Document analysis and decision-support tool for evaluating technical proposals submitted to an RFP.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="text-lg font-semibold mt-10 mb-4 opacity-80">Side builds</h3>
+    <div class="grid gap-4 sm:grid-cols-3">
+      <div class="bg-base-200 rounded-box p-4">
+        <div class="font-mono text-sm font-semibold">kumo</div>
+        <p class="text-sm opacity-70 mt-1">AWS-like mini cloud a developer can start in 15 minutes.</p>
+      </div>
+      <div class="bg-base-200 rounded-box p-4">
+        <div class="font-mono text-sm font-semibold">ibex</div>
+        <p class="text-sm opacity-70 mt-1">iPhone Backup Explorer.</p>
+      </div>
+      <div class="bg-base-200 rounded-box p-4">
+        <div class="font-mono text-sm font-semibold">
+          Connected Vehicles <span class="badge badge-outline badge-primary ml-1 align-middle">In progress</span>
+        </div>
+        <p class="text-sm opacity-70 mt-1">Raspberry Pi + GSM/GPS + OBD-II telemetry to an IoT platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest writing -->
+  {
+    latest_posts.length > 0 && (
+      <section class="my-16">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8">Latest writing</h2>
+        <ul>
+          {latest_posts.map((post) => (
+            <>
+              <HorizontalCard
+                title={post.data.title}
+                img={post.data.heroImage}
+                desc={post.data.description}
+                url={"/blog/" + createSlug(post.data.title, post.slug)}
+                target="_self"
+                badge={post.data.badge}
+                tags={post.data.tags}
+              />
+              <div class="divider my-0" />
+            </>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <!-- About + career timeline -->
+  <section class="my-16">
+    <h2 class="text-2xl md:text-3xl font-bold mb-6">About</h2>
+    <p class="max-w-2xl opacity-80 mb-10">
+      I'm an AI Solutions Architect with 18+ years across telecom and enterprise technology in four countries
+      &mdash; Egypt, Morocco, Iraq, and Saudi Arabia &mdash; now focused on generative AI and agentic systems for
+      enterprise delivery. I hold an M.Sc. in Artificial Intelligence from the University of Texas at Austin
+      (GPA 3.93), completed May 2026.
+    </p>
+    <div class="time-line-container grid gap-4">
+      <TimeLineElement title="Software Engineer &mdash; Xpress Integration & Ericsson" subtitle="Cairo, Egypt &middot; 2008">
+        Telecom BSS/OSS systems.
+      </TimeLineElement>
+      <TimeLineElement title="Consultant &mdash; Atos" subtitle="Rabat, Morocco &middot; 2012">
+        Maroc Telecom.
+      </TimeLineElement>
+      <TimeLineElement title="Senior Consultant &mdash; Ericsson" subtitle="Sulaymaniyah, Iraq &middot; 2013">
+        BSCS iX billing transformation for Asiacell.
+      </TimeLineElement>
+      <TimeLineElement title="Solution Architect &mdash; Mobily" subtitle="Riyadh, Saudi Arabia &middot; 2017" />
+      <TimeLineElement
+        title="AI & Cloud Solutions Architect &mdash; TONOMUS (NEOM)"
+        subtitle="Riyadh, Saudi Arabia &middot; 2021&ndash;present"
+      >
+        Embedded with the Public Investment Fund (PIF) AI solutions team.
+      </TimeLineElement>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="my-16 text-center bg-base-200 rounded-box py-12 px-6">
+    <h2 class="text-2xl md:text-3xl font-bold mb-3">Ready to move past AI exploration?</h2>
+    <p class="opacity-80 max-w-xl mx-auto mb-6">Let's talk about where AI can pay off in your organization.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a class="btn btn-primary" href="mailto:ahmedmeid@gmx.com">Let's talk</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/eidam/" target="_blank" rel="noreferrer">
+        Connect on LinkedIn
       </a>
     </div>
-  </div>
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
-  </div>
-
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+  </section>
 </BaseLayout>

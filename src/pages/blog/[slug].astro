@@ -3,9 +3,10 @@ import { CollectionEntry, getCollection } from "astro:content";
 import { BlogSchema } from "../../content/config";
 import PostLayout from "../../layouts/PostLayout.astro";
 import createSlug from "../../lib/createSlug"
+import { isPublished } from "../../lib/posts"
 
 export async function getStaticPaths() {
-  const postEntries = await getCollection("blog");
+  const postEntries = ((await getCollection("blog")) ?? []).filter(isPublished);
   return postEntries.map((entry) => ({
     params: { slug: createSlug(entry.data.title, entry.slug) },
     props: { entry },

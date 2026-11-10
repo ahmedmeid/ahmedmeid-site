@@ -3,90 +3,253 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+<BaseLayout title="CV" sideBarActiveItemID="cv">
+  <div class="flex items-center justify-between flex-wrap gap-4 mb-3">
+    <h1 class="text-3xl md:text-4xl font-bold">CV</h1>
+    <a class="btn btn-primary" href="/cv.pdf" download>Download CV (PDF)</a>
+  </div>
+  <div class="font-mono text-xs uppercase tracking-widest text-primary mb-1">
+    AI Solutions Architect &middot; Generative AI, RAG &amp; Agentic Systems &middot; Enterprise AI Delivery
+  </div>
+  <div class="text-sm opacity-70 mb-10">
+    Riyadh, Saudi Arabia &middot; <a href="https://www.linkedin.com/in/eidam/" target="_blank" rel="noreferrer" class="link">linkedin.com/in/eidam</a>
+    &middot; <a href="mailto:ahmedmeid@gmx.com" class="link">ahmedmeid@gmx.com</a>
   </div>
 
-  <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </div>
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">Profile</h2>
+    <p class="opacity-80 text-justify">
+      AI Solutions Architect with 18+ years spanning enterprise, solution, cloud, and AI architecture, including
+      hands-on production delivery of generative AI, RAG, and agentic systems for large-scale, regulated
+      organizations. I'm currently embedded within the Saudi Public Investment Fund (PIF) as part of a dedicated AI
+      solutions team, taking GenAI use cases from discovery and ideation through PoC and production on Palantir
+      Foundry and AIP &mdash; personally building RAG pipelines with vector, hybrid, and graph-based retrieval,
+      agentic workflows orchestrated with AIP Logic, chatbot applications, and recurring LLM evaluation and
+      regression-testing suites, while leading and mentoring a data engineering team. This flagship engagement caps
+      a multi-sector NEOM consulting portfolio spanning Food, Environment, Energy &amp; Water, Hotels, and the
+      University of NEOM, across digital strategy, data strategy, business capability mapping, procurement, and
+      system design. I'm skilled at translating ambiguous business problems into scalable, well-governed AI
+      architectures while partnering with executive stakeholders. I recently completed an M.Sc. in Artificial
+      Intelligence (University of Texas at Austin, GPA 3.93) and am certified across the full Google Cloud
+      AI/data/platform stack, plus AWS Solutions Architect Professional and Palantir.
+    </p>
+  </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-5">Core Competencies</h2>
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div>
+        <h3 class="font-semibold mb-1">Generative AI &amp; Agentic Systems</h3>
+        <p class="text-sm opacity-80">
+          LLMs, Retrieval-Augmented Generation (vector, hybrid &amp; graph-based retrieval), agentic/autonomous
+          workflows, prompt &amp; context engineering, Palantir AIP Logic orchestration, ASR pipelines.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-1">AI Engineering &amp; Evaluation</h3>
+        <p class="text-sm opacity-80">
+          LLM evaluation datasets &amp; regression testing (retrieval relevance, groundedness, latency, cost),
+          embeddings &amp; vector search, model explainability (Grad-CAM, SHAP), MLOps &amp; model monitoring, cost
+          &amp; latency optimization.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-1">System Design &amp; Architecture</h3>
+        <p class="text-sm opacity-80">
+          Enterprise &amp; Cloud Architecture, Reference Architectures, HLD/LLD, Integration &amp; Data-Flow Design,
+          NFRs, Secure Landing Zones, Cost/Option Analyses.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-1">Architecture Governance</h3>
+        <p class="text-sm opacity-80">
+          Technical Evaluation &amp; Compliance Reviews, RFP Development, Vendor &amp; Solution Assessment, BDAT
+          Domains (Business, Data, Application, Technology).
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-1">Platforms &amp; Cloud</h3>
+        <p class="text-sm opacity-80">
+          Palantir Foundry &amp; AIP, Google Cloud (Vertex AI, BigQuery), AWS, Python/PyTorch/Hugging Face, Docker
+          &amp; Kubernetes.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-1">Leadership &amp; Delivery</h3>
+        <p class="text-sm opacity-80">
+          Engineering Team Leadership &amp; Mentoring, Digital &amp; Data Strategy, Executive Stakeholder Engagement,
+          Procurement Advisory, PoC-to-Production Delivery.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-  </div>
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-5">Experience</h2>
+    <div class="time-line-container grid gap-4">
+      <TimeLineElement title="AI & Cloud Solutions Architect &mdash; TONOMUS (NEOM)" subtitle="Riyadh, Saudi Arabia &middot; Oct 2021 &ndash; Present">
+        <p class="text-left opacity-70 italic mb-2">
+          Embedded solutions consultant serving multiple NEOM sector clients across the full engagement lifecycle
+          &mdash; from digital &amp; data strategy through business capability mapping, procurement advisory, system
+          design, and technology consulting &mdash; culminating in hands-on production AI delivery at PIF.
+        </p>
+        <ul class="list-disc ml-5 space-y-1 text-left">
+          <li>
+            <span class="font-semibold">PIF flagship delivery:</span> architected and hands-on built an end-to-end
+            enterprise GenAI system on Palantir Foundry &amp; AIP &mdash; RAG pipelines, ASR ingestion, agentic
+            workflows, RBAC, lineage, and telemetry &mdash; designed to production-grade NFRs (security, latency,
+            cost, observability) in a regulated public-sector environment.
+          </li>
+          <li>
+            <span class="font-semibold">Hands-on engineering ownership:</span> personally built and owned
+            production Foundry components &mdash; data pipelines, ontology objects, chatbot applications, RAG
+            pipelines, and data visualizations &mdash; with agentic orchestration implemented in AIP Logic.
+          </li>
+          <li>
+            <span class="font-semibold">Advanced retrieval:</span> designed and built enterprise RAG pipelines
+            combining vector, hybrid, and graph-based retrieval &mdash; source curation, chunking, embeddings, and
+            prompt orchestration &mdash; for grounded, source-attributed answers.
+          </li>
+          <li>
+            <span class="font-semibold">LLM evaluation &amp; regression testing:</span> defined evaluation datasets
+            and recurring regression tests covering retrieval relevance, groundedness, latency, and cost.
+          </li>
+          <li>
+            <span class="font-semibold">Engineering leadership:</span> led and mentored the data engineering team of
+            Saudi fresh-graduate engineers through design reviews and delivery ownership.
+          </li>
+          <li>
+            Authored NEOM enterprise AI and cloud reference architectures, landing zones, HLD/LLD, integration
+            architectures, and NFR &amp; cost/option analyses across sector programs &mdash; Food, Environment,
+            Energy &amp; Water, Hotels, and University of NEOM.
+          </li>
+          <li>
+            Advised on procurement and technology selection, and facilitated AI discovery workshops and executive
+            presentations for senior client stakeholders.
+          </li>
+        </ul>
+      </TimeLineElement>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
+      <TimeLineElement title="Solution Architect &mdash; Mobily" subtitle="Riyadh, Saudi Arabia &middot; Jul 2017 &ndash; Sep 2021">
+        <ul class="list-disc ml-5 space-y-1 text-left">
+          <li>
+            Partnered with business and IT stakeholders to define, review, and refine requirements, ensuring
+            alignment with architectural standards; led architecture presentations and workshops to walk through
+            proposed solutions and gather governance feedback.
+          </li>
+          <li>
+            Documented solution architecture artifacts &mdash; business use cases, data flows, functional/
+            non-functional requirements &mdash; and produced system diagrams identifying interdependencies and
+            risks, across IT, network, and security domains.
+          </li>
+        </ul>
+      </TimeLineElement>
 
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-  </div>
+      <TimeLineElement title="Senior Consultant &mdash; Ericsson" subtitle="Sulaymaniyah, Iraq &middot; Jul 2013 &ndash; Jun 2017">
+        <ul class="list-disc ml-5 space-y-1 text-left">
+          <li>
+            Provided hands-on architecture support on a large-scale Telecom IT Transformation program for Asiacell
+            Telecom, leading a development team customizing the BSCS iX R3 billing platform.
+          </li>
+          <li>
+            Advised management on development estimates, technical risk, and architecture/technology choices; built
+            integration endpoints between BSCS iX and CRBT, online mediation, POS, and CRM platforms.
+          </li>
+        </ul>
+      </TimeLineElement>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
+      <TimeLineElement title="Consultant &mdash; Atos" subtitle="Rabat, Morocco &middot; Aug 2012 &ndash; Jun 2013">
+        <ul class="list-disc ml-5 space-y-1 text-left">
+          <li>
+            Designed and implemented software applications for new products and offers for Maroc Telecom, including
+            a Spring Batch application for tariff-model changes and an end-to-end location-monitoring service.
+          </li>
+        </ul>
+      </TimeLineElement>
 
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-  </ul>
+      <TimeLineElement title="Software Engineer &mdash; Xpress Integration & Ericsson" subtitle="Cairo, Egypt &middot; Jul 2008 &ndash; Jul 2012">
+        <ul class="list-disc ml-5 space-y-1 text-left">
+          <li>
+            Designed and developed the SPT (Smart Promotion Tool) and a SQL query-builder module for
+            customer-eligibility targeting, plus re-rating batch processing; earlier built GSM network-simulation
+            and mass-service-activation tooling at Ericsson.
+          </li>
+        </ul>
+      </TimeLineElement>
+    </div>
+  </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
-  </div>
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-5">Education</h2>
+    <div class="time-line-container grid gap-4">
+      <TimeLineElement
+        title="M.Sc. in Artificial Intelligence &mdash; University of Texas at Austin"
+        subtitle="Sep 2024 &ndash; May 2026 &middot; GPA 3.93/4.00"
+      >
+        <ul class="list-disc ml-5 space-y-1 text-left">
+          <li>
+            <span class="font-semibold">Selected project &mdash; Medical Imaging Diagnostic Pipeline:</span> trained
+            a brain-cancer classification model with structured error analysis and Grad-CAM/SHAP explainability,
+            reducing false positives by 13%.
+          </li>
+          <li>
+            <span class="font-semibold">Selected project &mdash; Vision-Language Model Fine-Tuning:</span> fine-tuned
+            a VLM for visual question answering, covering preprocessing, augmentation, experiment tracking, and
+            structured evaluation.
+          </li>
+        </ul>
+      </TimeLineElement>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-  </ul>
+      <TimeLineElement
+        title="Postgraduate Diploma in Software Engineering &mdash; ITI"
+        subtitle="Cairo, Egypt &middot; Jul 2007 &ndash; Jun 2008"
+      />
+
+      <TimeLineElement
+        title="B.Sc. in Mathematics and Computer Science &mdash; Menoufia University"
+        subtitle="Shebin Elkom, Egypt &middot; Sep 2001 &ndash; May 2005"
+      />
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-5">Certifications</h2>
+    <div class="grid gap-8 sm:grid-cols-3">
+      <div>
+        <h3 class="font-semibold mb-2">Google Cloud</h3>
+        <ul class="list-disc ml-5 space-y-1 text-sm opacity-80">
+          <li>Professional Machine Learning Engineer</li>
+          <li>Professional Data Engineer</li>
+          <li>Professional Cloud Architect</li>
+          <li>Generative AI Leader</li>
+          <li>Associate Cloud Engineer</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2">AWS</h3>
+        <ul class="list-disc ml-5 space-y-1 text-sm opacity-80">
+          <li>Solutions Architect &ndash; Professional</li>
+          <li>DevOps Engineer &ndash; Professional</li>
+          <li>Solutions Architect &ndash; Associate</li>
+          <li>Cloud Practitioner</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2">Palantir</h3>
+        <ul class="list-disc ml-5 space-y-1 text-sm opacity-80">
+          <li>Foundry Data Engineer Associate</li>
+          <li>Foundry Application Developer Associate</li>
+          <li>Foundry &amp; AIP Builder</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-4">
+    <h2 class="text-2xl font-bold mb-5">Languages</h2>
+    <ul class="flex flex-wrap gap-x-8 gap-y-2">
+      <li><span class="font-semibold">Arabic</span> <span class="opacity-70 text-sm">&mdash; Native</span></li>
+      <li><span class="font-semibold">English</span> <span class="opacity-70 text-sm">&mdash; Fluent</span></li>
+    </ul>
+  </section>
 </BaseLayout>

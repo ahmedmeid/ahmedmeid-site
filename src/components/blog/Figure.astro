@@ -1,0 +1,15 @@
+---
+// Blueprint-style figure wrapper for diagrams inside blog posts.
+// Only usable from .mdx posts (plain .md can't render components inline).
+// Usage: <Figure caption="How retrieval flows through the system.">
+//           ...diagram markup (e.g. BlueprintDiagram, or custom boxes)...
+//        </Figure>
+const { caption } = Astro.props;
+---
+
+<figure class="not-prose blueprint rounded-box border border-base-300 p-4 md:p-6 w-full my-8">
+  <div class="flex items-center justify-center overflow-x-auto">
+    <slot />
+  </div>
+  {caption && <figcaption class="font-mono text-xs text-center opacity-70 mt-3">{caption}</figcaption>}
+</figure>

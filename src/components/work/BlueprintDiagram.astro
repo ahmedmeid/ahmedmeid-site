@@ -1,0 +1,29 @@
+---
+// Small blueprint-grid process diagram: a row of labeled boxes connected by
+// arrows, wrapping to a vertical stack on narrow screens.
+const { steps = [] } = Astro.props;
+---
+
+<div class="blueprint rounded-box border border-base-300 p-3 sm:p-4 my-4">
+  <div class="flex flex-col sm:flex-row items-stretch gap-2">
+    {
+      steps.map((step, i) => (
+        <>
+          <div class="flex-1 bg-base-100 border border-base-300 rounded-box px-3 py-2 text-xs sm:text-sm font-medium text-center flex items-center justify-center">
+            {step}
+          </div>
+          {i < steps.length - 1 && (
+            <div class="flex items-center justify-center text-primary shrink-0">
+              <span class="sm:hidden text-lg" aria-hidden="true">
+                ↓
+              </span>
+              <span class="hidden sm:inline text-lg" aria-hidden="true">
+                →
+              </span>
+            </div>
+          )}
+        </>
+      ))
+    }
+  </div>
+</div>

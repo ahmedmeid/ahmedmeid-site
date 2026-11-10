@@ -16,8 +16,9 @@ module.exports = {
 	},
 	plugins: [require("@tailwindcss/typography"), require("daisyui")],
 	daisyui: {
-		// The first theme is the default; the dark one is used automatically
-		// when the visitor's device is in dark mode.
+		// The first theme (ahmedmeid) is the default, applied unconditionally.
+		// ahmedmeid-dark only activates via `data-theme` on <html>, set by the
+		// toggle in ThemeToggle.astro and persisted to localStorage.
 		themes: [
 			{
 				ahmedmeid: {
@@ -66,7 +67,6 @@ module.exports = {
 				},
 			},
 		],
-		darkTheme: "ahmedmeid-dark",
 		logs: false,
 	},
 }

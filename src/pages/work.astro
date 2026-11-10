@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlueprintDiagram from "../components/work/BlueprintDiagram.astro";
+
+const selectedWork = [
+  {
+    badge: "Palantir Foundry & AIP",
+    title: "Enterprise GenAI System — PIF",
+    problem:
+      "The PIF AI solutions team needed an enterprise-grade generative AI system covering retrieval, workflow automation, and governance.",
+    approach:
+      "Architected and hands-on built RAG across vector, hybrid, and graph-based retrieval; an ASR ingestion and transcription workflow; agentic workflows; and RBAC, lineage, and telemetry for governance.",
+    outcome:
+      "Shipped with LLM evaluation and regression-testing suites covering retrieval relevance, groundedness, latency, and cost — built with a team of Saudi fresh-graduate data engineers I led and mentored.",
+    diagram: ["Ingest & transcribe (ASR)", "Retrieve (vector / hybrid / graph)", "Agentic workflows", "Govern (RBAC, lineage, telemetry)"],
+  },
+  {
+    badge: "TONOMUS / NEOM",
+    title: "NEOM Enterprise Architecture",
+    problem:
+      "Multiple NEOM sectors — Food, Environment, Energy & Water, Hotels, and University of NEOM — needed enterprise AI and cloud architecture guidance, from first discovery to procurement.",
+    approach:
+      "Ran AI discovery workshops, then delivered enterprise AI and cloud reference architectures, landing zones, HLD/LLD, and NFR and cost/option analyses for each sector.",
+    outcome:
+      "Reference architectures and landing zones in place across NEOM sectors, with technology choices backed by procurement and technology advisory.",
+    diagram: ["Discover (AI workshops)", "Architect (reference arch., landing zones, HLD/LLD)", "Validate (NFR, cost/option)", "Advise & procure"],
+  },
+  {
+    badge: "UT Austin",
+    title: "Medical Imaging Diagnostic Pipeline",
+    problem: "Brain-cancer classification models can be accurate yet opaque, making individual errors hard to diagnose.",
+    approach: "Built a classification pipeline with Grad-CAM and SHAP explainability, plus a structured error-analysis process.",
+    outcome: "Reduced false positives by 13%.",
+    diagram: ["Scan input", "Classify", "Explain (Grad-CAM / SHAP)", "Error analysis"],
+  },
+  {
+    badge: "UT Austin",
+    title: "Vision-Language Model Fine-Tuning",
+    problem: "A vision-language model needed to be adapted for visual question answering.",
+    approach: "Fine-tuned the model with a disciplined pipeline: preprocessing, augmentation, experiment tracking, and structured evaluation.",
+    outcome: "[TODO: add outcome/result for the VLM fine-tuning project]",
+    diagram: ["Preprocess", "Augment", "Fine-tune & track", "Evaluate"],
+  },
+];
+
+const sideBuilds = [
+  {
+    name: "kumo",
+    desc: "AWS-like mini cloud a developer can start in 15 minutes.",
+  },
+  {
+    name: "ibex",
+    desc: "iPhone Backup Explorer.",
+  },
+  {
+    name: "AI Tender Evaluation",
+    desc: "Document analysis and decision support for evaluating technical proposals submitted to an RFP.",
+  },
+  {
+    name: "Connected Vehicles",
+    badge: "In progress",
+    desc: "Raspberry Pi + GSM/GPS + OBD-II telemetry to an IoT platform.",
+  },
+];
+---
+
+<BaseLayout
+  title="Work"
+  description="Selected work in enterprise GenAI, cloud architecture, and applied AI, plus side builds."
+  sideBarActiveItemID="work"
+>
+  <h1 class="text-3xl md:text-4xl font-bold mb-10">Work</h1>
+
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-6">Selected work</h2>
+    <div class="grid gap-6">
+      {
+        selectedWork.map((item) => (
+          <div class="bg-base-100 border border-base-300 rounded-box p-6">
+            <div class="badge badge-secondary mb-3">{item.badge}</div>
+            <h3 class="text-xl font-bold mb-4">{item.title}</h3>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">Problem</dt>
+                <dd class="opacity-80">{item.problem}</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">Approach</dt>
+                <dd class="opacity-80">{item.approach}</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">Outcome</dt>
+                <dd class="opacity-80">{item.outcome}</dd>
+              </div>
+            </dl>
+            <BlueprintDiagram steps={item.diagram} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mb-4">
+    <h2 class="text-2xl font-bold mb-6">Side builds</h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        sideBuilds.map((build) => (
+          <div class="bg-base-200 rounded-box p-5">
+            <div class="font-mono text-sm font-semibold">
+              {build.name}
+              {build.badge && <span class="badge badge-outline badge-primary ml-2 align-middle">{build.badge}</span>}
+            </div>
+            <p class="text-sm opacity-70 mt-1">{build.desc}</p>
+            <p class="text-xs font-mono opacity-50 mt-2">[TODO: link]</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -13,6 +13,27 @@ export interface Props {
 const { title, description, image = '/social_img.webp', ogType = 'website' } = Astro.props;
 ---
 
+<!-- Apply a saved theme choice before first paint, so there's no flash of the
+     wrong theme. Default is always light; dark only applies if the visitor
+     has explicitly toggled it (see ThemeToggle.astro). Re-run on every
+     client-side view transition too, since the swapped-in page's raw HTML
+     never carries data-theme itself (this is a static build). -->
+<script is:inline>
+	(function () {
+		function applySavedTheme() {
+			try {
+				if (localStorage.getItem("theme") === "dark") {
+					document.documentElement.setAttribute("data-theme", "ahmedmeid-dark");
+				} else {
+					document.documentElement.removeAttribute("data-theme");
+				}
+			} catch (e) {}
+		}
+		applySavedTheme();
+		document.addEventListener("astro:after-swap", applySavedTheme);
+	})();
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />

@@ -20,5 +20,5 @@ const activeClass = "bg-base-300 text-primary font-semibold"; // For primary col
 
 <script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass }}>
 const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem && activeItemElem.classList.add(activeClass);
+activeItemElem && activeItemElem.classList.add(...activeClass.split(" "));
 </script>

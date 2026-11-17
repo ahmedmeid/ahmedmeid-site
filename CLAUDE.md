@@ -101,7 +101,7 @@ Use only these facts. **Never invent** metrics, clients, dates, testimonials, or
 ## Site structure (target)
 
 - Home: photo + headline + CTA ("Let's talk", "See selected work") · credentials strip · "How I take AI from idea to production" (4 steps) · Selected work · Latest writing · short About + career timeline · contact CTA.
-- Work/Projects · Writing (blog, by topic: AI strategy, RAG & evaluation, Architecture, Data platforms, Builds) · CV · Contact (mailto + LinkedIn).
+- Work/Projects · Blog (nav label "Blog"; by topic: AI strategy, RAG & evaluation, Architecture, Data platforms, Builds) · CV · Contact (mailto + LinkedIn).
 - Remove the template's **Store** and repurpose **Services** as "How I work" / engagements (only if Ahmed confirms consulting is offered).
 
 ## Writing conventions

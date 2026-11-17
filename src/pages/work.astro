@@ -2,7 +2,16 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BlueprintDiagram from "../components/work/BlueprintDiagram.astro";
 
-const selectedWork = [
+const selectedWork: {
+  badge: string;
+  title: string;
+  problem: string;
+  approach: string;
+  outcome: string;
+  diagram: string[];
+  url?: string;
+  paper?: string;
+}[] = [
   {
     badge: "Palantir Foundry & AIP",
     title: "Enterprise GenAI System — PIF",
@@ -35,26 +44,59 @@ const selectedWork = [
   },
   {
     badge: "UT Austin",
-    title: "Vision-Language Model Fine-Tuning",
-    problem: "A vision-language model needed to be adapted for visual question answering.",
-    approach: "Fine-tuned the model with a disciplined pipeline: preprocessing, augmentation, experiment tracking, and structured evaluation.",
-    outcome: "[TODO: add outcome/result for the VLM fine-tuning project]",
-    diagram: ["Preprocess", "Augment", "Fine-tune & track", "Evaluate"],
+    title: "CNN vs. Vision-Language Models for Explainable Medical Imaging",
+    problem:
+      "A CNN brain-tumor MRI classifier reached 98.4% accuracy in training and validation, but its remaining errors were hard to explain: heatmaps showed it attending to skull edges and anatomical boundaries instead of the tumor.",
+    approach:
+      "Analyzed the misclassified scans with Grad-CAM++, EigenCAM, and AblationCAM, then gave the same scans to LLaVA-Med, a biomedical vision-language model, using 2-shot and 4-shot in-context prompts, and compared its answers and explanations with the CNN's heatmaps.",
+    outcome:
+      "Of the 13 scans the CNN misclassified, LLaVA-Med classified 7 correctly with 2-shot prompts (53.8%) and 9 with 4-shot prompts (69.2%), explaining its reasoning in natural language.",
+    diagram: ["Train & evaluate CNN", "Explain errors (CAM methods)", "Prepare few-shot examples", "Classify with VLM", "Compare explanations"],
+  },
+  {
+    badge: "UT Austin",
+    title: "A GPT Built and Trained from Scratch",
+    problem:
+      "A course assignment in Advances in Deep Generative Models: build a GPT-style language model end to end, with every component written from scratch.",
+    approach:
+      "Implemented a 30M-parameter decoder-only Transformer in PyTorch (6 layers, 6 attention heads, 256-token context) with causal self-attention, KV caching, and weight tying, plus a training pipeline with AdamW, a cosine learning-rate schedule, gradient accumulation, and mixed precision. Trained it on 50,000 TinyStories children's stories.",
+    outcome:
+      "Trained in about 5 minutes on a single RTX 5090 to a validation loss of 2.37, with no sign of overfitting. The model writes grammatical, locally coherent children's stories, and the ways it fails on out-of-domain prompts and extreme sampling settings show how autoregressive models behave.",
+    diagram: ["Tokenize (GPT-2 BPE)", "Transformer (6 layers, 30M parameters)", "Train (AdamW, cosine LR)", "Sample (temperature, top-k)"],
+    url: "https://github.com/ahmedmohamedut/tinystories-gpt",
+  },
+  {
+    badge: "UT Austin",
+    title: "Predicting Apartment Rental Prices in Riyadh",
+    problem:
+      "Riyadh rental listings hide much of what drives price, such as private parking or a maid's room, inside free-text Arabic descriptions that structured fields do not capture.",
+    approach:
+      "Scraped 13,634 listings and cleaned them to 8,252 across 108 districts. A two-pass LLM pipeline extracted six amenity features from the Arabic descriptions with Qwen3, then verified them independently with ALLaM-7B, an Arabic-specialist model (over 94% agreement). Trained Ridge, Random Forest, and XGBoost models on the combined features and explained them with SHAP.",
+    outcome:
+      "Random Forest performed best on the test set: R² 0.735 and a mean absolute error of 9,492 SAR per year (15.9% MAPE). Private parking, a feature extracted by the LLM, ranked among the top five price drivers. Written up as a paper.",
+    diagram: ["Scrape & clean listings", "Extract features from Arabic text (LLM)", "Verify with a second LLM", "Train (Ridge, RF, XGBoost)", "Explain (SHAP)"],
+    url: "https://github.com/ahmedmohamedut/riyadh-rental-prices-paper",
+    paper: "https://www.researchgate.net/publication/404298820_Predicting_Apartment_Rental_Prices_in_Riyadh_A_Machine_Learning_Approach_with_LLM-Augmented_Arabic_Text_Features",
   },
 ];
 
-const sideBuilds = [
+// A "View on GitHub" link appears on the card once a url is set.
+// TODO: add a url for Connected Vehicles when there is one.
+const sideBuilds: { name: string; desc: string; badge?: string; url?: string }[] = [
   {
     name: "kumo",
     desc: "AWS-like mini cloud a developer can start in 15 minutes.",
+    url: "https://github.com/ahmedmohamedut/kumo",
   },
   {
     name: "ibex",
     desc: "iPhone Backup Explorer.",
+    url: "https://github.com/ahmedmohamedut/ibex",
   },
   {
     name: "AI Tender Evaluation",
     desc: "Document analysis and decision support for evaluating technical proposals submitted to an RFP.",
+    url: "https://github.com/ahmedmohamedut/ai-tender-eval-platform",
   },
   {
     name: "Connected Vehicles",
@@ -88,12 +130,28 @@ const sideBuilds = [
                 <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">Approach</dt>
                 <dd class="opacity-80">{item.approach}</dd>
               </div>
-              <div>
-                <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">Outcome</dt>
-                <dd class="opacity-80">{item.outcome}</dd>
-              </div>
+              {item.outcome && (
+                <div>
+                  <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">Outcome</dt>
+                  <dd class="opacity-80">{item.outcome}</dd>
+                </div>
+              )}
             </dl>
             <BlueprintDiagram steps={item.diagram} />
+            {(item.paper || item.url) && (
+              <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+                {item.paper && (
+                  <a class="link link-primary" href={item.paper} target="_blank" rel="noreferrer">
+                    Read the paper
+                  </a>
+                )}
+                {item.url && (
+                  <a class="link link-primary" href={item.url} target="_blank" rel="noreferrer">
+                    View on GitHub
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         ))
       }
@@ -111,7 +169,11 @@ const sideBuilds = [
               {build.badge && <span class="badge badge-outline badge-primary ml-2 align-middle">{build.badge}</span>}
             </div>
             <p class="text-sm opacity-70 mt-1">{build.desc}</p>
-            <p class="text-xs font-mono opacity-50 mt-2">[TODO: link]</p>
+            {build.url && (
+              <a class="link link-primary text-sm mt-2 inline-block" href={build.url} target="_blank" rel="noreferrer">
+                View on GitHub
+              </a>
+            )}
           </div>
         ))
       }

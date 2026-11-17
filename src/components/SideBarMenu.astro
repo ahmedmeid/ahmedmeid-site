@@ -1,12 +1,18 @@
 ---
+import { getCollection } from "astro:content";
+import { isPublished } from "../lib/posts";
+
 const { sideBarActiveItemID } = Astro.props;
+// "Writing" only shows once at least one post is published, so the nav
+// never leads to an empty page.
+const hasPosts = ((await getCollection("blog")) ?? []).some(isPublished);
 const activeClass = "bg-base-300 text-primary font-semibold"; // For primary color replace with `active` class
 ---
 
 <ul class="menu grow shrink menu-md overflow-y-auto">
     <li><a class="py-3 text-base" id="home" href="/">Home</a></li>
     <li><a class="py-3 text-base" id="work" href="/work">Work</a></li>
-    <li><a class="py-3 text-base" id="blog" href="/blog/">Writing</a></li>
+    {hasPosts && <li><a class="py-3 text-base" id="blog" href="/blog/">Writing</a></li>}
     <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
     <li>
         <a

@@ -7,9 +7,8 @@ import { isPublished } from "../../../../lib/posts";
 
 export async function getStaticPaths({ paginate }) {
   const all_posts = ((await getCollection("blog")) ?? []).filter(isPublished);
-  const all_tags = all_posts.flatMap((post) => {
-    return post.data.tags || [];
-  });
+  // De-duplicated: two posts sharing a tag must not generate the same route twice.
+  const all_tags = [...new Set(all_posts.flatMap((post) => post.data.tags || []))];
 
   return all_tags.flatMap((tag) => {
     const filtred_posts = all_posts.filter((post) => {

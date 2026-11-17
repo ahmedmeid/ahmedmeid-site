@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # Wrangler
 .wrangler/
+
+# Source material for the Work page (not part of the site)
+VLM_Project/

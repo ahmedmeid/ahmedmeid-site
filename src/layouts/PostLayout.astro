@@ -8,12 +8,13 @@ export interface Props extends BlogSchema {}
 
 const { title, description, pubDate, updatedDate, heroImage, badge, tags = [] } = Astro.props;
 dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format("ll")
+const displayDate = dayjs(pubDate).format("ll");
+const displayUpdatedDate = updatedDate && dayjs(updatedDate).isValid() ? dayjs(updatedDate).format("ll") : updatedDate;
 import { Image } from "astro:assets";
 ---
 
-<BaseLayout title={title} description={description} image={heroImage}, ogType="article">
-  <main class="md:flex md:justify-center">
+<BaseLayout title={title} description={description} image={heroImage} ogType="article">
+  <div class="md:flex md:justify-center">
     <article class="prose prose-lg max-w-[720px] prose-img:mx-auto font-serif prose-headings:font-sans prose-headings:tracking-tight prose-code:font-mono">
       {heroImage && <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6" />}
       <h1 class="title my-2 text-4xl font-bold">{title}</h1>
@@ -30,14 +31,13 @@ import { Image } from "astro:assets";
       }
       {
         updatedDate && (
-          <div>
-            {" "}
-            Last updated on <time>{updatedDate}</time>{" "}
+          <div class="font-mono text-sm opacity-70">
+            Last updated on <time>{displayUpdatedDate}</time>
           </div>
         )
       }
       <div class="divider my-2"></div>
       <slot />
     </article>
-  </main>
+  </div>
 </BaseLayout>

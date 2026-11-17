@@ -67,7 +67,7 @@ const steps = [
   <!-- Credentials strip -->
   <div class="my-10 md:my-14 border-y border-base-300 py-5">
     <ul class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-sm md:text-base">
-      <li>18+ years in architecture</li>
+      <li>18+ years in enterprise technology</li>
       <li class="hidden md:inline opacity-40" aria-hidden="true">&middot;</li>
       <li>M.Sc. in AI, UT Austin</li>
       <li class="hidden md:inline opacity-40" aria-hidden="true">&middot;</li>
@@ -144,30 +144,72 @@ const steps = [
 
       <div class="bg-base-100 border border-base-300 rounded-box p-6">
         <div class="badge badge-secondary mb-3">UT Austin</div>
-        <h3 class="text-xl font-bold mb-2">Vision-Language Model Fine-Tuning</h3>
+        <h3 class="text-xl font-bold mb-2">CNN vs. Vision-Language Models for Explainable Medical Imaging</h3>
         <p class="opacity-80">
-          Fine-tuned a vision-language model for visual question answering &mdash; preprocessing, augmentation,
-          experiment tracking, and structured evaluation.
+          Compared a CNN's heatmap explanations with LLaVA-Med on brain-tumor MRI. With 4-shot prompts, the
+          vision-language model correctly classified 9 of the 13 scans the CNN got wrong, and explained why.
         </p>
       </div>
 
       <div class="bg-base-100 border border-base-300 rounded-box p-6">
-        <h3 class="text-xl font-bold mb-2">AI Tender Evaluation</h3>
+        <div class="badge badge-secondary mb-3">UT Austin</div>
+        <h3 class="text-xl font-bold mb-2">A GPT Built and Trained from Scratch</h3>
         <p class="opacity-80">
-          Document analysis and decision-support tool for evaluating technical proposals submitted to an RFP.
+          A 30M-parameter decoder-only Transformer written from scratch in PyTorch and trained on 50,000
+          children's stories, with KV caching, mixed precision, and a cosine learning-rate schedule.
         </p>
+        <a
+          class="link link-primary text-sm mt-3 inline-block"
+          href="https://github.com/ahmedmohamedut/tinystories-gpt"
+          target="_blank"
+          rel="noreferrer">View on GitHub</a
+        >
+      </div>
+
+      <div class="bg-base-100 border border-base-300 rounded-box p-6">
+        <div class="badge badge-secondary mb-3">UT Austin</div>
+        <h3 class="text-xl font-bold mb-2">Predicting Apartment Rental Prices in Riyadh</h3>
+        <p class="opacity-80">
+          A paper and pipeline predicting annual rents from 8,252 listings, using LLMs to extract amenity
+          features from Arabic listing descriptions. Best model: R&sup2; 0.735 on the test set.
+        </p>
+        <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm mt-3">
+          <a class="link link-primary" href="https://www.researchgate.net/publication/404298820_Predicting_Apartment_Rental_Prices_in_Riyadh_A_Machine_Learning_Approach_with_LLM-Augmented_Arabic_Text_Features" target="_blank" rel="noreferrer">Read the paper</a>
+          <a class="link link-primary" href="https://github.com/ahmedmohamedut/riyadh-rental-prices-paper" target="_blank" rel="noreferrer">View on GitHub</a>
+        </div>
       </div>
     </div>
 
     <h3 class="text-lg font-semibold mt-10 mb-4 opacity-80">Side builds</h3>
-    <div class="grid gap-4 sm:grid-cols-3">
+    <div class="grid gap-4 sm:grid-cols-2">
       <div class="bg-base-200 rounded-box p-4">
-        <div class="font-mono text-sm font-semibold">kumo</div>
+        <a
+          class="font-mono text-sm font-semibold link link-hover"
+          href="https://github.com/ahmedmohamedut/kumo"
+          target="_blank"
+          rel="noreferrer">kumo</a
+        >
         <p class="text-sm opacity-70 mt-1">AWS-like mini cloud a developer can start in 15 minutes.</p>
       </div>
       <div class="bg-base-200 rounded-box p-4">
-        <div class="font-mono text-sm font-semibold">ibex</div>
+        <a
+          class="font-mono text-sm font-semibold link link-hover"
+          href="https://github.com/ahmedmohamedut/ibex"
+          target="_blank"
+          rel="noreferrer">ibex</a
+        >
         <p class="text-sm opacity-70 mt-1">iPhone Backup Explorer.</p>
+      </div>
+      <div class="bg-base-200 rounded-box p-4">
+        <a
+          class="font-mono text-sm font-semibold link link-hover"
+          href="https://github.com/ahmedmohamedut/ai-tender-eval-platform"
+          target="_blank"
+          rel="noreferrer">AI Tender Evaluation</a
+        >
+        <p class="text-sm opacity-70 mt-1">
+          Document analysis and decision support for evaluating technical proposals submitted to an RFP.
+        </p>
       </div>
       <div class="bg-base-200 rounded-box p-4">
         <div class="font-mono text-sm font-semibold">
